@@ -12,3 +12,7 @@ try {
 } catch (err) {
     console.error("Error writing to file:", err);
 }
+
+console.log(" Statement - 1");
+console.log(" Statement - 2");
+console.log(" Statement - 3");
