@@ -1,0 +1,1 @@
+This is simple text file reading directly from server

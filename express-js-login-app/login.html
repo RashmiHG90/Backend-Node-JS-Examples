@@ -6,6 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Login Page</h2>
+    <h2>Login Page with get method</h2>
+    <form action="checkLogin" method="get">
+        <label>Email:</label>
+        <input type="email" name="emailId"/><br/>
+        <label>Password:</label>
+        <input type="password" name="password"/><br/>
+        <input type="submit" value="SignIn"/>
+        <input type="reset" value="Reset"/>
+    </form>
+
+    <h2>Login Page with post method</h2>
+    <form action="checkLogin" method="post">
+        <label>Email:</label>
+        <input type="email" name="emailId"/><br/>
+        <label>Password:</label>
+        <input type="password" name="password"/><br/>
+        <input type="submit" value="SignIn"/>
+        <input type="reset" value="Reset"/>
+    </form>
 </body>
 </html>
