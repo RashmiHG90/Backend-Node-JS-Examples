@@ -1,7 +1,8 @@
 let express = require("express");
 let app = express();
 
-
+//middleware to read form data from the request body
+app.use(express.urlencoded({extended:true})); 
 
 
 app.get("/", (request, response) => {
@@ -21,12 +22,23 @@ app.get("/checkLogin", (request, response) => {
     console.log("Email ID: " + emailId);
     console.log("Password: " + password);
     if(emailId=="admin@gmail.com" && password=="admin@123"){
-        response.send("Login Successful");
+        response.send("Login Successful with get method");
     } else{
-        response.send("Login Failed");
+        response.send("Login Failed with get method");
     }
-}
-)
+})
+
+app.post("/checkLogin", (request, response) => {
+    let emailId=request.body.emailId;
+    let password=request.body.password;
+    console.log("Email ID: " + emailId);
+    console.log("Password: " + password);
+    if(emailId=="admin@gmail.com" && password=="admin@123"){
+        response.send("Login Successful with post method");
+    } else{
+        response.send("Login Failed with post method");
+    }
+})
 
 
 app.get("/textFile", (request, response) => {
