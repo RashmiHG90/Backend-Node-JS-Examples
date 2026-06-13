@@ -30,6 +30,22 @@ app.post("/signUp",(request, response)=>{
     }
 })
 
+app.post("/signIn",(request, response)=>{
+    let loginDetails = request.body;
+    let loginfs = JSON.parse(fs.readFileSync("login.json").toString());
+    let loginExists = loginfs.find(login => login.emailId == loginDetails.emailId && login.password == loginDetails.password && login.typeOfUser == loginDetails.typeOfUser);
+    console.log(loginExists);
+    if(loginExists){
+        if(loginExists.typeOfUser === "admin"){
+            response.sendFile(__dirname + "/adminDashboard.html");
+        }else{
+            response.sendFile(__dirname + "/customerDasboard.html");
+        }
+    }else{
+        response.send("Invalid credentials. Please <a href='/'>login</a> again.");
+    }
+})
+
 app.listen(5000,()=>{
     console.log("Server is running on port 5000");
 });
