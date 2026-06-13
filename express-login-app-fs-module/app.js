@@ -37,9 +37,17 @@ app.post("/signIn",(request, response)=>{
     console.log(loginExists);
     if(loginExists){
         if(loginExists.typeOfUser === "admin"){
-            response.sendFile(__dirname + "/adminDashboard.html");
+           // response.sendFile(__dirname + "/adminDashboard.html");
+           let adminDashboardContent = fs.readFileSync("adminDashboard.html").toString();
+           adminDashboardContent = adminDashboardContent.replace("{{emailId}}", loginExists.emailId);
+           response.send(adminDashboardContent);
+           response.end();
         }else{
-            response.sendFile(__dirname + "/customerDasboard.html");
+            //response.sendFile(__dirname + "/customerDasboard.html");
+            let customerDashboardContent = fs.readFileSync("customerDasboard.html");            
+            response.write(customerDashboardContent);
+            response.write("<h3>Welcome " + loginExists.emailId + "</h3>");
+            response.end();
         }
     }else{
         response.send("Invalid credentials. Please <a href='/'>login</a> again.");
